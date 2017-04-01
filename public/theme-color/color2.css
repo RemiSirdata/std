@@ -1,0 +1,24 @@
+#style-switcher h2 a {
+    background: #ff6262;
+}
+.audio-btn {
+color: #ff6262;
+border: 2px solid #ff6262;
+}
+.sidenav, .event, .audio-btn:hover {
+    background: #ff6262;
+}
+.nav-weds.is-active .navicon, .heartbeat, .nav-weds.is-active .navbar-brand, .nav-weds.is-active .navbar-nav > li > a, .navbar-nav > li > a:hover, .ico i, .couples .heartico i, .story .container .box .item h4, .timer-body-block .table-cell .tab-val, .journal .box h5, .owl-theme .owl-dots .owl-dot.active span::after {
+	color: #ff6262;
+}
+.mask, .pepoles-row .box figure .overlay, .gallery-masonry .item .box a::after {
+    background: rgba(255, 98, 98, 0.59);
+}
+.rsvp .rsvp-box {
+	background: rgb(255, 98, 98);
+}
+.sidenav ul li a {
+    border-bottom: 1px solid #fb9292;
+}
+
+

@@ -1,0 +1,18 @@
+package main
+
+const (
+	ROUTE_HOME      = "/"
+	ROUTE_LIST      = "/liste"
+	ROUTE_AJAX_RSVP = "/api/rsvp"
+
+	DB_NAME               = "savethedate"
+	GUEST_COLLECTION_NAME = "guest"
+	GUEST_COLLECTION_HISTORY = "guest_history"
+
+	STATUS_WAITING_RESPONSE = "WAITING_RESPONSE"
+
+	STATUS_ACCEPT_ALL = "STATUS_ACCEPT_ALL"
+	STATUS_RECEPTION  = "STATUS_RECEPTION"
+	STATUS_DINNER     = "STATUS_DINNER"
+	STATUS_REFUSED    = "STATUS_REFUSED"
+)
