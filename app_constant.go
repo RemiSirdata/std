@@ -1,12 +1,13 @@
 package main
 
 const (
-	ROUTE_HOME      = "/"
-	ROUTE_LIST      = "/liste"
-	ROUTE_AJAX_RSVP = "/api/rsvp"
+	ROUTE_HOME       = "/"
+	ROUTE_LIST       = "/liste"
+	ROUTE_LIST_GUEST = "/list_guest"
+	ROUTE_AJAX_RSVP  = "/api/rsvp"
 
-	DB_NAME               = "savethedate"
-	GUEST_COLLECTION_NAME = "guest"
+	DB_NAME                  = "savethedate"
+	GUEST_COLLECTION_NAME    = "guest"
 	GUEST_COLLECTION_HISTORY = "guest_history"
 
 	STATUS_WAITING_RESPONSE = "WAITING_RESPONSE"

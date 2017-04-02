@@ -107,6 +107,7 @@ func main() {
 	routes := []Route{
 		{ROUTE_HOME, iris.MethodGet, homeHandler},
 		{ROUTE_LIST, iris.MethodGet, listHandler},
+		{ROUTE_LIST_GUEST, iris.MethodGet, listGuestHandler},
 		{ROUTE_AJAX_RSVP, iris.MethodPost, ajaxRsvpHandler},
 	}
 
