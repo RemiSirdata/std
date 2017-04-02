@@ -11,12 +11,16 @@ import (
 	"time"
 	"os"
 	"html/template"
+	"encoding/csv"
+	"strconv"
+	"strings"
 )
 
 func main() {
 
 	mongoAddr := flag.String("mongo-addr", "localhost", "Mongo address like server1.example.com,server2.example.com")
 	createAdmin := flag.String("create-admin", "", "Create admin and stop")
+	importFromFile := flag.String("user-file", "", "CSV file to import format name, maxguest, hasAccessToDinner, login, pass")
 	bind := flag.String("bind", ":8888", "Bind port")
 	flag.Parse()
 
@@ -38,6 +42,44 @@ func main() {
 			appContext.Logger.Crit(err.Error())
 		} else {
 			appContext.Logger.Info(fmt.Sprintf("User %s created with password %s", *createAdmin, password))
+		}
+		os.Exit(0)
+	}
+
+	if *importFromFile != "" {
+		appContext.Logger.Info("Import user file")
+		f, err := os.Open(*importFromFile)
+		if err != nil {
+			appContext.Logger.Crit(err.Error())
+			os.Exit(1)
+		}
+		defer f.Close() // this needs to be after the err check
+		reader := csv.NewReader(f)
+		reader.Comma = ';'
+		reader.LazyQuotes = true
+		lines, err := reader.ReadAll()
+		if err != nil {
+			appContext.Logger.Crit(err.Error())
+			os.Exit(1)
+		}
+		c := appContext.Mongo.Session.DB(DB_NAME).C(GUEST_COLLECTION_NAME)
+		for _, line := range lines {
+			if line[3] != "" {
+				appContext.Logger.Info(fmt.Sprintf("%v", line))
+				count, _ := strconv.Atoi(line[1])
+				err := c.Insert(Guest{
+					Login:            strings.TrimSpace(line[3]),
+					Password:         strings.TrimSpace(line[4]),
+					IsAdmin:          line[5] == "1",
+					Status:           STATUS_WAITING_RESPONSE,
+					MaxGuests:        count,
+					GuestCount:       0,
+					HasAccessToParty: line[2] == "1",
+				})
+				if err != nil {
+					appContext.Logger.Error(fmt.Sprintf("Fail to insert %s : %s", line[3], err.Error()))
+				}
+			}
 		}
 		os.Exit(0)
 	}
