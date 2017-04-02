@@ -68,6 +68,7 @@ func main() {
 				appContext.Logger.Info(fmt.Sprintf("%v", line))
 				count, _ := strconv.Atoi(line[1])
 				err := c.Insert(Guest{
+					Name:             strings.TrimSpace(line[0]),
 					Login:            strings.TrimSpace(line[3]),
 					Password:         strings.TrimSpace(line[4]),
 					IsAdmin:          line[5] == "1",
