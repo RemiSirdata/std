@@ -84,6 +84,7 @@
             <div class="col-md-12">
                 <div class="title">
                     <h2 class="force-police">Wedding is coming...</h2>
+                    <p>29 Juillet 2017</p>
                     <div class="ico black"><span class="line"> </span> <span class="line line2"> </span> <i
                             class="fa fa-heart" aria-hidden="true"></i> <span class="line line2"> </span> <span
                             class="line"> </span></div>
@@ -121,19 +122,20 @@
                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                             <select name="status" class="form-control" id="rsvp-status">
                                 {{range $status, $text := .SelectStatus}}
-                                    <option value="{{$status}}" >{{ $text }}</option>
+                                <option value="{{$status}}">{{ $text }}</option>
                                 {{end}}
                             </select>
                         </div>
                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                            <select name="guest" class="form-control" id="rsvp-guest" {{ if eq .Guest.MaxGuests 1 }} readonly="readonly" {{end}}>
+                            <select name="guest" class="form-control" id="rsvp-guest" {{ if eq .Guest.MaxGuests 1 }}
+                                    readonly="readonly" {{end}}>
                                 {{ if eq .Guest.MaxGuests 1 }}
-                                    <option>1 invité</option>
+                                <option>1 invité</option>
                                 {{ else }}
-                                    <option disabled="disabled">Nombre d'invités</option>
-                                    {{range $i := N 1 .Guest.MaxGuests}}
-                                    <option>{{ $i }}</option>
-                                    {{end}}
+                                <option disabled="disabled">Nombre d'invités</option>
+                                {{range $i := N 1 .Guest.MaxGuests}}
+                                <option>{{ $i }}</option>
+                                {{end}}
                                 {{ end }}
                             </select>
                         </div>
@@ -142,6 +144,10 @@
                                       placeholder="Votre message aux futurs mariés"></textarea>
                             <div class="help-block with-errors"></div>
                         </div>
+                        <p style="font-size:13px;opacity:0.3;">
+                            Vous pouvez également confirmer votre présence par courrier postal au : 102 rue Martainville
+                            - 76000 Rouen
+                        </p>
                         <div class="col-md-12 text-center">
                             <button type="submit" id="form-submit" class="btn btn-default btn-rsvp">Confirmer</button>
                         </div>
@@ -199,7 +205,8 @@
                             <div class="social">
                                 {{ $value.Address }}<br/>
                                 {{ $value.PhoneNumber }}<br/>
-                                <a class="btn btn-default btn-rsvp" href="{{$value.MapUrl}}" target="_blank">Voir sur la carte</a>
+                                <a class="btn btn-default btn-rsvp" href="{{$value.MapUrl}}" target="_blank">Voir sur la
+                                    carte</a>
                             </div>
                         </div>
                     </figure>
@@ -221,10 +228,11 @@
         <div class="dta">
             <h4 class="force-police">Merci</h4>
             <h2 class="force-police">Sofya & Rémi</h2>
-            <div class="ico"><span class="line"> </span> <span class="line line2"> </span> <i class="fa fa-heart"
-                                                                                              aria-hidden="true"></i>
+            <div class="ico"><span class="line"> </span>
+                <span class="line line2"> </span> <i class="fa fa-heart" aria-hidden="true"></i>
                 <span class="line line2"> </span> <span class="line"> </span></div>
             <h6>29 Juillet 2017</h6>
+            <p>102 rue Martainville - 76000 Rouen</p>
         </div>
     </div>
     <div class="spacer"></div>

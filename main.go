@@ -20,7 +20,7 @@ func main() {
 
 	mongoAddr := flag.String("mongo-addr", "localhost", "Mongo address like server1.example.com,server2.example.com")
 	createAdmin := flag.String("create-admin", "", "Create admin and stop")
-	importFromFile := flag.String("user-file", "", "CSV file to import format name, maxguest, hasAccessToDinner, login, pass")
+	importFromFile := flag.String("user-file", "", "CSV file to import format name, maxguest, hasAccessToDinner, login, pass, isAdmin")
 	bind := flag.String("bind", ":8888", "Bind port")
 	flag.Parse()
 
