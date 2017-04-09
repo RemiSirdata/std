@@ -14,12 +14,16 @@ func listGuestHandler(ctx *iris.Context, appContext *AppContext) {
 		ctx.SetStatusCode(iris.StatusNotFound)
 		return
 	}
+
+	guests, err := loadGuest(appContext.Mongo)
+
 	var buffer bytes.Buffer
 	buffer.WriteString(`<html><head><link rel="stylesheet" href="/assets/css/plugins/bootstrap.css"></head><body>
 	<table class="table table-striped"><tr><th>Name</th><th>Login</th><th>Pass</th><th>Status</th><th>Guests</th><th>Max guests</th><th>Last Update Status</th><th>Message</th></tr>`)
-	for _, guest := range appContext.Guests{
+	if err == nil {
+		for _, guest := range guests {
 
-		buffer.WriteString(fmt.Sprintf(`<tr>
+			buffer.WriteString(fmt.Sprintf(`<tr>
 			<td>%s</td>
 			<td>%s</td>
 			<td>%s</td>
@@ -29,6 +33,7 @@ func listGuestHandler(ctx *iris.Context, appContext *AppContext) {
 			<td>%s</td>
 			<td>%s</td>
 		</tr>`, guest.Name, guest.Login, guest.Password, guest.Status, guest.GuestCount, guest.MaxGuests, guest.LastUpdateStatus.Format("2006-01-02 15:04:05"), guest.Message))
+		}
 	}
 	buffer.WriteString("</table></body></html>")
 	ctx.Write(buffer.Bytes())
