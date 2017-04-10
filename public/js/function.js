@@ -192,7 +192,8 @@
             navigation: true,
             autoplay: true,
             autoplayTimeout: 5000,
-            animateOut: 'fadeOut'
+            animateOut: 'fadeOut',
+            autoWidth: true,
         });
 
         // 03.2 Story Carousel
