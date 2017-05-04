@@ -9,7 +9,7 @@ func loadGuest(mongo *Mongo) ([]Guest, error) {
 	guests := []Guest{}
 	err := mongo.Connect()
 	if err == nil {
-		err = mongo.Session.DB(DB_NAME).C(GUEST_COLLECTION_NAME).Find(map[string]string{}).All(&guests)
+		err = mongo.Session.DB(DB_NAME).C(GUEST_COLLECTION_NAME).Find(map[string]string{}).Sort("last_update_status").All(&guests)
 	}
 	return guests, err
 }
